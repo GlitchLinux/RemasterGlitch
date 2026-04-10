@@ -1,13 +1,12 @@
 # RemasterGlitch v1.0 Debian Package
 
-<img width="244" height="249" alt="RemasterGlitch" src="https://github.com/user-attachments/assets/a3b81d4f-27b6-453b-8bf1-a1253e281512" />
 
-## Build Information
+                                                                                                                                                  ## Build Information
 - **Package Name:** remasterglitch
-- **Version:** 1.0-amd64
-- **Architecture:** amd64 (x86_64)
+                                                                                                                                             - **Version:** 1.0-amd64
+<img width="244" height="249" alt="RemasterGlitch" src="https://github.com/user-attachments/assets/a3b81d4f-27b6-453b-8bf1-a1253e281512" />  - **Architecture:** amd64 (x86_64)
 - **Size:** 15MB (includes bundled ISO files)
-- **Built:** April 10, 2026
+- **Built:** April 10, 202
 
 ## Package Contents
 
