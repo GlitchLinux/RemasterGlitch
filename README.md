@@ -1,6 +1,6 @@
 # RemasterGlitch v1.0 Debian Package
 
-RemasterGlitch.png
+<img width="244" height="249" alt="RemasterGlitch" src="https://github.com/user-attachments/assets/a3b81d4f-27b6-453b-8bf1-a1253e281512" />
 
 ## Build Information
 - **Package Name:** remasterglitch
