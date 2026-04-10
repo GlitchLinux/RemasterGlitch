@@ -1,5 +1,7 @@
 # RemasterGlitch v1.0 Debian Package
 
+RemasterGlitch.png
+
 ## Build Information
 - **Package Name:** remasterglitch
 - **Version:** 1.0-amd64
