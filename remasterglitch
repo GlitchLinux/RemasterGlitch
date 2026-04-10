@@ -1,0 +1,3 @@
+#!/bin/bash
+# RemasterGlitch launcher
+sudo python3 /usr/share/remasterglitch/remasterglitch.py

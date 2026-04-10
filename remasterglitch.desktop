@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Comment[en_GB]=Build live ISO from your system
+Name=RemasterGlitch
+Exec=/usr/bin/remasterglitch
+Icon=/usr/share/remasterglitch/RemasterGlitch.png
+Terminal=false
+Categories=Utility;
+Comment=
+Path=
+StartupNotify=false
