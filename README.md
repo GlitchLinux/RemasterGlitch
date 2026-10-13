@@ -51,6 +51,8 @@ sudo apt-get install -f  # (if dependencies are missing)
 - cpio, lzma, curl, rsync
 - grub-pc-bin, grub-efi-amd64-bin
 - mtools, dosfstools, util-linux
+  
+<img width="842" height="838" alt="RemasterGLITCH-3" src="https://github.com/user-attachments/assets/20321aa6-29db-4e2d-93cf-2bd899a06720" />
 
 ## Usage
 
