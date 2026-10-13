@@ -126,7 +126,7 @@ fi
 echo "DETECTED: live_dir=$live_dir vmlinuz=$vmlinuz initrd=$initrd"
 
 # ── Working dir ──
-work_dir="/tmp/iso_build_$$"
+work_dir="/tmp/iso_build"
 rm -rf "$work_dir"
 mkdir -p "$work_dir"
 
@@ -148,52 +148,84 @@ chmod -R 755 "$work_dir" 2>/dev/null || true
 
 # ── Copy splash ──
 mkdir -p "$work_dir/boot/grub"
-if [ -f "$work_dir/isolinux/splash.png" ]; then
-    cp "$work_dir/isolinux/splash.png" "$work_dir/boot/grub/splash.png" 2>/dev/null || true
+if [ -f "/boot/grub/themes/splash.png" ]; then
+    cp "/boot/grub/themes/splash.png" "$work_dir/boot/grub/splash.png" 2>/dev/null || true
 fi
-[ -f "/boot/grub/splash.png" ] && cp "/boot/grub/splash.png" "$work_dir/boot/grub/splash.png" 2>/dev/null || true
+[ -f "/boot/grub/themes/splash.png" ] && cp "/boot/grub/themes/splash.png" "$work_dir/boot/grub/splash.png" 2>/dev/null || true
 
 # ── GRUB theme ──
-cat > "$work_dir/boot/grub/theme.cfg" <<'THEME_EOF'
-title-text: ""
+cat > "$work_dir/boot/grub/theme.cfg" <<THEME_EOF
+title-text: "${system_name}"
 title-font: "Sans Bold 28"
 title-color: "#FFFFFF"
-desktop-color: "#111111"
+desktop-color: "#000000"
 desktop-image: "/boot/grub/splash.png"
 message-font: "Sans Regular 20"
 message-color: "#FFFFFF"
-message-bg-color: "#303030"
+message-bg-color: "#000000"
 terminal-font: "Sans Regular 20"
 
 + boot_menu {
-  left = 10%
-  top = 20%
+  left = 18%
+  top = 25%
   width = 70%
   height = 80%
+
   item_font = "DejaVu Sans Bold 14"
-  item_color = "grey"
+  item_color = "#FFFFFF"
   item_height = 32
   item_icon_space = 8
   item_spacing = 2
+
   selected_item_font = "DejaVu Sans Bold 14"
-  selected_item_color= "#ffffff"
+  selected_item_color= "#FF7038"
+  # selected_item_pixmap_style = "select_*.png"
+
   icon_height = 32
   icon_width = 32
+
   scrollbar = false
   scrollbar_width = 20
+  scrollbar_thumb = "slider_*.png"
 }
 
 + progress_bar {
   id = "__timeout__"
+
   left = 15%
   top = 85%
-  height = 5
+  height = 15
   width = 70%
-  fg_color = "grey"
-  bg_color = "#303030"
-  border_color = "#303030"
+
+  # font = "DejaVu Sans Regular 14"
+
+  # text_color = "#aaaaaa"
+  fg_color = "#FF7038"
+
+  bg_color = "#242424"
+  border_color = "#242424"
+
+  # instead of the above colors, use pixmaps
+  # bar_style = "progress_bar_*.png"
+  # highlight_style = "progress_highlight_*.png"
+
+  # text = "@TIMEOUT_NOTIFICATION_LONG@"
+}
+
+# Footer information
++ vbox {
+    top = 95%
+    left = 2%
+    + label {
+        text = ""
+        font = "Sans Bold 24"
+        color = "#ffffff"
+        align = "center"
+    }
 }
 THEME_EOF
+
+sed -i "s/\${system_name}/$system_name/g" "$work_dir/boot/grub/theme.cfg"
 
 # ── GRUB config ──
 cat > "$work_dir/boot/grub/grub.cfg" <<GRUB_EOF
@@ -262,6 +294,16 @@ menuentry "${system_name} - Unencrypted Persistence" {
     linux /live/${vmlinuz} boot=live components quiet splash persistence
     initrd /live/${initrd}
 }
+menuentry "${system_name} - Boot to RAM with Encrypted Persistence" {
+    linux /live/${vmlinuz} boot=live persistence components quiet splash toram persistent=cryptsetup persistence-encryption=luks persistence
+    initrd /live/${initrd}
+}
+
+if [ -f /boot/grub/custom.cfg ]; then
+    menuentry "Custom Options" {
+        configfile /boot/grub/custom.cfg
+    }
+fi
 GRUB_EOF
 fi
 
@@ -282,6 +324,8 @@ cat > "$work_dir/autorun.inf" <<AUTORUN_EOF
 icon=iso.ico
 label=${system_name}
 AUTORUN_EOF
+
+cp $work_dir/boot/grub/grub.cfg $work_dir/boot/grub/loopback.cfg
 
 # ── Build ISO with xorriso ──
 echo "STEP: Building ISO with xorriso..."
@@ -1216,7 +1260,7 @@ class SquashWorker(QThread):
         script_path = os.path.join(work, "usr", "share", "initramfs-tools", "scripts", "live")
 
         if not os.path.exists(hook_path) or not os.path.exists(script_path):
-            self.log("Live-boot hooks not found — skipping rebuild, using rsynced initrd.", "WARNING")
+            self.log("Live-boot hooks not found - skipping rebuild, using rsynced initrd.", "WARNING")
             if os.path.exists(backup_path):
                 shutil.copy2(backup_path, initrd_path)
             self._unmount_chroot(work)
