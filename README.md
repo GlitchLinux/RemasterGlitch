@@ -1,28 +1,13 @@
 # RemasterGlitch v1.1 Live Boot Builder
 
+<img width="842" height="838" alt="RemasterGLITCH" src="https://github.com/user-attachments/assets/ba4a5404-33c2-4314-be0e-9f6d18cd35e5" />
+
 ## Build Information
 - **Package Name:** remasterglitch
 - **Version:** 1.0-amd64
 - **Architecture:** amd64 (x86_64)
 - **Size:** 15MB (includes bundled ISO files)
 - **Built:** April 10, 2026
-
-<img width="842" height="838" alt="RemasterGLITCH" src="https://github.com/user-attachments/assets/ba4a5404-33c2-4314-be0e-9f6d18cd35e5" />
-
-## Package Contents
-
-```
-/usr/bin/remasterglitch              - Launcher script
-/usr/local/bin/remasterglitch        - Symlink (created on install)
-/usr/share/remasterglitch/
-  ├── remasterglitch.py              - Main application (PyQt5)
-  ├── RemasterGlitch.png             - Application icon
-  └── ISO-Hybrid-Base.tar.lzma       - Bundled ISO build files (NO DOWNLOAD NEEDED)
-/usr/share/applications/
-  └── remasterglitch.desktop         - Desktop entry for application menu
-```
-
-## What's Different from Source
 
 ✅ **Bundled ISO Files**
 - `ISO-Hybrid-Base.tar.lzma` is included in the package
