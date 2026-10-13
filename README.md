@@ -7,6 +7,8 @@
 - **Size:** 15MB (includes bundled ISO files)
 - **Built:** April 10, 2026
 
+<img width="842" height="838" alt="RemasterGLITCH" src="https://github.com/user-attachments/assets/ba4a5404-33c2-4314-be0e-9f6d18cd35e5" />
+
 ## Package Contents
 
 ```
@@ -39,6 +41,7 @@
 sudo dpkg -i remasterglitch-1.0.deb
 sudo apt-get install -f  # (if dependencies are missing)
 ```
+<img width="842" height="838" alt="RemasterGLITCH-3" src="https://github.com/user-attachments/assets/ae2eccf8-bdda-44a5-8737-87048c9efa66" />
 
 ## Dependencies (Automatically Installed)
 - python3
