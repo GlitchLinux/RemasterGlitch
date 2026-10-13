@@ -1,4 +1,4 @@
-# RemasterGlitch v1.0 Debian Package
+# RemasterGlitch v1.1 Live Boot Builder
 
 ## Build Information
 - **Package Name:** remasterglitch
