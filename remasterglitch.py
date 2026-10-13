@@ -3,7 +3,7 @@
 Glitch Linux Live System Builder
 ==================================
 A PyQt5 GUI utility that builds a complete, bootable live ISO from a
-running Linux system — in one fully automated pipeline.
+running Linux system - in one fully automated pipeline.
 
 Pipeline:
   1. Rsync the running system into a clean remastered snapshot
